@@ -475,11 +475,24 @@
                                     <segue destination="XY0-zI-JSf" kind="show" id="UVJ-QK-KPJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-l2-Fpm">
+                                <rect key="frame" x="147" y="576" width="81" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <state key="normal" image="Logo"/>
+                                <connections>
+                                    <action selector="shARePhotoButton:" destination="zzw-B9-ZF8" eventType="touchUpInside" id="mlZ-xT-S6m"/>
+                                </connections>
+                            </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8S-kD-HW3" userLabel="HiddenImage">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="shARe Camera" id="LhO-8C-Ebs"/>
                     <connections>
+                        <outlet property="HiddenImage" destination="q8S-kD-HW3" id="tvg-fL-gCc"/>
                         <outlet property="sceneView" destination="EzZ-Nb-d5x" id="SxZ-UY-kmO"/>
                     </connections>
                 </viewController>
@@ -554,6 +567,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="81" height="71"/>
         <image name="ManagePreferences" width="187" height="333"/>
         <image name="NotificationSettings" width="187" height="333"/>
         <image name="ProfileIcon" width="38" height="35"/>
@@ -564,6 +578,7 @@
         <image name="settings" width="187" height="333"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="faT-Xo-zMP"/>
         <segue reference="4KQ-Ss-reA"/>
         <segue reference="leW-tZ-hHI"/>
     </inferredMetricsTieBreakers>

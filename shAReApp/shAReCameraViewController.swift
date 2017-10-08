@@ -13,10 +13,11 @@ import SceneKit
 import MapKit
 import CoreLocation
 
-class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate, ARSKViewDelegate, ARSCNViewDelegate {
+class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate, ARSKViewDelegate, ARSCNViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet weak var HiddenImage: UIImageView!
     
 
     override func viewDidLoad() {
@@ -93,6 +94,32 @@ class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MK
         
         
     }
+    
+    // shARe button function for taking photos
+    @IBAction func shARePhotoButton(_ sender: Any) {
+        // when we click on 'choose image' it will take us to the photo library
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            // if we can cast the image we chose as a UIImage, show it in the image view
+            HiddenImage.contentMode = .scaleToFill
+            HiddenImage.image = image
+            
+        }
+        
+        // once we've chosen a photo, close photo library
+        // remember to change access in info.plist
+        picker.dismiss(animated: true, completion: nil)
+        
+        
+    }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
