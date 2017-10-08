@@ -33,6 +33,11 @@ class UserTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        
+        /*
+        // screen orientation lock
+        AppUtility.lockOrientation(.portrait)
+        */
     }
     
     
@@ -122,7 +127,12 @@ class UserTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+      
+        /*
+        // screen orientation lock - remove the * to activate again
+        AppUtility.lockOrientation(.portrait)
+        */
+ 
         refresh()
         
         refresher = UIRefreshControl()
@@ -131,6 +141,7 @@ class UserTableViewController: UITableViewController {
         refresher.addTarget(self, action: #selector(UserTableViewController.refresh), for: UIControlEvents.valueChanged)
         
         tableView.addSubview(refresher)
+    
         
     }
 

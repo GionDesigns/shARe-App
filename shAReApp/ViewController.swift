@@ -52,6 +52,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             createAlert(title: "Error", message: "Please enter all fields.")
             
+            return
+            
         } else {
             
             activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -72,6 +74,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 user.username = usernameTextField.text
                 user.email = emailTextField.text
                 user.password = passwordTextField.text
+                user["bio"] = "Fill me in"
+                user["phoneNumber"] = "Fill me in"
+                
                 
                 user.signUpInBackground(block: { (success, error) in
                     

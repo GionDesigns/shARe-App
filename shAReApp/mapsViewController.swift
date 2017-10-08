@@ -20,12 +20,13 @@ class mapsViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     @IBAction func searchMyLocation(_ sender: Any) {
 
-        mapView.showsUserLocation = true
+        
         mapView.setUserTrackingMode(.follow, animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.showsUserLocation = true
         // Do any additional setup after loading the view.
         self.mapView.delegate = self
         

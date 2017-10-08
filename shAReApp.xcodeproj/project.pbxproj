@@ -24,6 +24,7 @@
 		C25721D51F7DE01300EE8C38 /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25721D41F7DE01300EE8C38 /* profileViewController.swift */; };
 		C25721D71F7E26BA00EE8C38 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25721D61F7E26BA00EE8C38 /* settingsViewController.swift */; };
 		C283F7611F7D1842000A5220 /* shAReCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C283F7601F7D1842000A5220 /* shAReCameraViewController.swift */; };
+		C2949D201F8988CB00AB910F /* profileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2949D1F1F8988CB00AB910F /* profileSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		C25721D61F7E26BA00EE8C38 /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		C28315181F7D0865000BDB2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		C283F7601F7D1842000A5220 /* shAReCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shAReCameraViewController.swift; sourceTree = "<group>"; };
+		C2949D1F1F8988CB00AB910F /* profileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				C25721D41F7DE01300EE8C38 /* profileViewController.swift */,
+				C2949D1F1F8988CB00AB910F /* profileSettingsViewController.swift */,
 				C25721D21F7DDB8200EE8C38 /* mapsViewController.swift */,
 				C283F7601F7D1842000A5220 /* shAReCameraViewController.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
@@ -218,6 +221,7 @@
 				C25721D51F7DE01300EE8C38 /* profileViewController.swift in Sources */,
 				C283F7611F7D1842000A5220 /* shAReCameraViewController.swift in Sources */,
 				845A2A051F6A483C00D1A6DF /* UserTableViewController.swift in Sources */,
+				C2949D201F8988CB00AB910F /* profileSettingsViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				C25721D31F7DDB8200EE8C38 /* mapsViewController.swift in Sources */,
 				C25721D71F7E26BA00EE8C38 /* settingsViewController.swift in Sources */,

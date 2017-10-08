@@ -22,6 +22,11 @@ class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MK
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        /*
+        // screen orientation lock
+        AppUtility.lockOrientation(.landscapeRight)
+        */
+        
         // Do any additional setup after loading the view.
         //navigation bar logo- navigation bar has since been removed so this code is now irrelevant - but link to details - https://www.ioscreator.com/tutorials/customizing-navigation-bar-ios-tutorial-ios10
         /*
@@ -89,6 +94,15 @@ class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MK
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /*
+        // screen orientation lock
+        AppUtility.lockOrientation(.landscapeRight)
+        */
+    }
+    
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,6 +110,10 @@ class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MK
         
         // Pause the view's session
         sceneView.session.pause()
+
+        /*
+        AppUtility.lockOrientation(.portrait)
+        */
         
         
     }
@@ -142,4 +160,24 @@ extension ViewController: ARSCNViewDelegate{
         
     }
 }
+
+/* This is for screen orientation locking
+struct AppUtility {
+    
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+        
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.orientationLock = orientation
+        }
+    }
+    
+    /// OPTIONAL Added method to adjust lock and rotate to the desired orientation
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+        
+        self.lockOrientation(orientation)
+        
+        UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+    }
+
+}*/
 
