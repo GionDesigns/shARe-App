@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CoreLocation
 
 class PostViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -76,6 +77,19 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         post["imageFile"] = imageFile
         
+        // saving location as well https://stackoverflow.com/questions/30828847/how-to-retrive-location-from-a-pfgeopoint-parse-com-and-swift-and-show-it-on
+        
+        var locationManager = CLLocationManager()
+        
+        var lat = locationManager.location?.coordinate.latitude
+        var lon = locationManager.location?.coordinate.longitude
+        
+        let myGeoPoint = PFGeoPoint(latitude: lat!, longitude: lon!)
+        let myParseID = PFUser.current()?.objectId
+        
+        post.setObject(myParseID, forKey: "Who")
+        post.setObject(myGeoPoint, forKey: "Where")
+        
         post.saveInBackground { (success, error) in
             
             self.activityIndicator.stopAnimating()
@@ -87,7 +101,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 
             } else {
                 
-                self.createAlert(title: "Image posted!", message: "Your image has been uploaded, great work Jake.")
+                self.createAlert(title: "Image posted!", message: "Your image has been uploaded!")
                 
                 self.messageTextField.text = ""
                 self.imageToPost.image = UIImage(named: "file-default-icon-62367.png")
@@ -102,6 +116,33 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // screen liftin with keyboard appearing - https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    // Remove keyboard when touching background screen - https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
     override func didReceiveMemoryWarning() {

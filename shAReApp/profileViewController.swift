@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class profileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class profileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate{
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -119,6 +119,7 @@ class profileViewController: UIViewController, UINavigationControllerDelegate, U
         emailProfile.text = PFUser.current()?.email
         
         // update profile picture - https://stackoverflow.com/questions/31776333/retrieve-avatar-from-user-class-swift-parse
+
         
         let avatarFile = PFUser.current()!["ProfilePic"] as! PFFile
         avatarFile.getDataInBackground() {
@@ -128,12 +129,46 @@ class profileViewController: UIViewController, UINavigationControllerDelegate, U
                     self.profilePicImage.image = finalimage
                 }
             }
+            
+            // screen liftin with keyboard appearing - https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+            
+            self.usernameProfile.delegate = self ;
+            self.bioProfile.delegate = self ;
+            
+            
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(profileViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(profileViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         }
+        
         /*
         // screen orientation lock
         AppUtility.lockOrientation(.portrait)
         */
 
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    // Remove keyboard when touching background screen - https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
     override func viewDidAppear(_ animated: Bool) {

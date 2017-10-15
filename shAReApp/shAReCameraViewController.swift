@@ -163,10 +163,6 @@ class shAReCameraViewController: UIViewController, CLLocationManagerDelegate, MK
 
 }
 
-extension ViewController: UIImagePickerControllerDelegate {
-    
-    
-}
 
 
 extension ViewController: ARSCNViewDelegate{

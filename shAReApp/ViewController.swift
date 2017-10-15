@@ -17,6 +17,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var activityIndicator = UIActivityIndicatorView()
     
+    var currentUser = PFUser.current()
+    
     @IBOutlet weak var signinTextBorder: UIImageView!
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -31,6 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var changeSignupMode: UIButton!
     
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var logoBackground: UIImageView!
     
     func createAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -69,6 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 // sign up
             
                 let user = PFUser()
+                let post = PFObject(className: "User")
                 
                 // need a username for parse, don't need an email but we're asking for it so we'll save it separately
                 user.username = usernameTextField.text
@@ -77,8 +81,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 user["bio"] = "Fill me in"
                 user["phoneNumber"] = "Fill me in"
                 
+
                 
                 user.signUpInBackground(block: { (success, error) in
+                    
+                    
                     
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
@@ -97,7 +104,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         return
                         
                     } else {
+                        let imageData = UIImageJPEGRepresentation(self.logoBackground.image!, 0.1)
+                        let imageFile = PFFile(name: "image.jpeg", data: imageData!)
                         
+                        post["ProfilePic"] = imageFile
+                        
+                        post.saveInBackground()
                         print("User signed up.")
                         
                         self.performSegue(withIdentifier: "shAReCameraView", sender: self)

@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class profileSettingsViewController: UIViewController, UINavigationControllerDelegate {
+class profileSettingsViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -89,8 +89,38 @@ class profileSettingsViewController: UIViewController, UINavigationControllerDel
         
         emailProfileSettings.text = PFUser.current()?.email
         phoneNumberProfileSettings.text = currentUser?["phoneNumber"] as! String
+        
+        // screen liftin with keyboard appearing - https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+        
+        self.emailProfileSettings.delegate = self ;
+        self.phoneNumberProfileSettings.delegate = self ;
+        self.passwordProfileSettings.delegate = self ;
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(profileSettingsViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(profileSettingsViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    // Remove keyboard when touching background screen - https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

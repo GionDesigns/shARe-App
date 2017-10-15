@@ -78,12 +78,17 @@
                                     <action selector="changeSignupMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rSY-Ds-cej"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="YzH-9I-I0X">
+                                <rect key="frame" x="91" y="91" width="185" height="164"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="changeSignupMode" destination="DWM-5k-Tt8" id="8k0-Kf-bWe"/>
                         <outlet property="emailTextField" destination="0cg-sr-hjU" id="z3W-P3-A6e"/>
+                        <outlet property="logoBackground" destination="YzH-9I-I0X" id="A12-aA-isW"/>
                         <outlet property="messageLabel" destination="MeG-8b-mCi" id="KEx-lv-AMx"/>
                         <outlet property="passwordTextField" destination="7jh-3f-EQd" id="OtN-P9-Jjt"/>
                         <outlet property="signinTextBorder" destination="YPB-Cd-H64" id="utY-zc-h61"/>
@@ -94,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1764" y="-377"/>
+            <point key="canvasLocation" x="-2255.1999999999998" y="-1281.4092953523239"/>
         </scene>
         <!--Friends-->
         <scene sceneID="fFS-MO-GSc">
@@ -138,7 +143,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Q3-e6-7SI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727" y="-81"/>
+            <point key="canvasLocation" x="-1316" y="-660"/>
         </scene>
         <!--Post-->
         <scene sceneID="ze3-l1-0rl">
@@ -155,6 +160,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="file-default-icon-62367.png" translatesAutoresizingMaskIntoConstraints="NO" id="Oxa-T2-nb4">
                                 <rect key="frame" x="0.0" y="72" width="375" height="429"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VFb-Rx-iaN" appends="YES" id="bs3-7x-p9C"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8NA-qa-ahy">
                                 <rect key="frame" x="120" y="509" width="135" height="30"/>
@@ -184,6 +193,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="VFb-Rx-iaN" appends="YES" id="Zrv-Fp-MrA"/>
+                            <outletCollection property="gestureRecognizers" destination="VFb-Rx-iaN" appends="YES" id="VLT-3Y-XJk"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="imageToPost" destination="Oxa-T2-nb4" id="E5A-JO-1ad"/>
@@ -191,8 +205,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4e-0Y-Je8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="VFb-Rx-iaN">
+                    <connections>
+                        <segue destination="vHE-PJ-cwA" kind="show" id="jJz-Ft-3iH"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1729" y="-81"/>
+            <point key="canvasLocation" x="1516" y="-418"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pnR-z3-Ceb">
@@ -208,7 +227,51 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBb-zF-Gei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-321" y="-81"/>
+            <point key="canvasLocation" x="-511" y="-661"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kZe-mT-FPx">
+            <objects>
+                <viewController id="vHE-PJ-cwA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IMA-CW-ghW"/>
+                        <viewControllerLayoutGuide type="bottom" id="AhQ-Fb-Ktc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ysa-TG-4uN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Gallery" translatesAutoresizingMaskIntoConstraints="NO" id="Lxx-hg-95a">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="tGj-Is-ZQL" appends="YES" id="hdo-wx-MQh"/>
+                                    <outletCollection property="gestureRecognizers" destination="tGj-Is-ZQL" appends="YES" id="2kN-83-HGX"/>
+                                    <outletCollection property="gestureRecognizers" destination="tGj-Is-ZQL" appends="YES" id="hGY-OG-0cP"/>
+                                    <outletCollection property="gestureRecognizers" destination="tGj-Is-ZQL" appends="YES" id="6BF-mj-lk1"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-gh-JJc">
+                                <rect key="frame" x="279" y="604" width="87" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test Camera"/>
+                                <connections>
+                                    <segue destination="N9V-sc-eRD" kind="show" id="hxm-iU-taN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CBP-Td-qyB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="tGj-Is-ZQL">
+                    <connections>
+                        <segue destination="zzw-B9-ZF8" kind="show" id="Htn-Bd-Wx2"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="476" y="-417.8410794602699"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DoL-v8-SCr">
@@ -465,6 +528,7 @@
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="rqn-Xx-GnB" appends="YES" id="I0i-vb-SIA"/>
                                     <outletCollection property="gestureRecognizers" destination="xEH-PY-yYU" appends="YES" id="2cj-nc-OkW"/>
+                                    <outletCollection property="gestureRecognizers" destination="ZFG-Rk-xOQ" appends="YES" id="gh9-VT-vXh"/>
                                 </connections>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9O-Vq-Lwe">
@@ -505,6 +569,11 @@
                 <swipeGestureRecognizer direction="left" id="xEH-PY-yYU">
                     <connections>
                         <segue destination="2fL-Iz-Msw" kind="show" id="mms-cT-faQ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="ZFG-Rk-xOQ">
+                    <connections>
+                        <segue destination="vHE-PJ-cwA" kind="show" id="7qE-sV-4h2"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -563,10 +632,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEg-eA-UUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-481" y="-1223"/>
+            <point key="canvasLocation" x="-1404" y="-1416"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Gallery" width="375" height="667"/>
         <image name="Logo" width="81" height="71"/>
         <image name="ManagePreferences" width="187" height="333"/>
         <image name="NotificationSettings" width="187" height="333"/>
@@ -578,8 +648,8 @@
         <image name="settings" width="187" height="333"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="faT-Xo-zMP"/>
-        <segue reference="4KQ-Ss-reA"/>
-        <segue reference="leW-tZ-hHI"/>
+        <segue reference="Htn-Bd-Wx2"/>
+        <segue reference="jJz-Ft-3iH"/>
+        <segue reference="Ypk-zm-10D"/>
     </inferredMetricsTieBreakers>
 </document>
